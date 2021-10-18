@@ -1,0 +1,19 @@
+while true do
+    wait()
+    local players = game.Players:GetChildren()
+    local tool = game:GetService("Players").LocalPlayer.Backpack.Punch
+    for i, v in ipairs(players) do
+        if v.Name == game.Players.LocalPlayer.Name then
+            continue
+        end
+        while v.Character.Humanoid.Health > 0 and game.Players.LocalPlayer.Character.Humanoid.Health ~= 0 do
+            wait()
+            local torso = v.Character:FindFirstChild("HumanoidRootPart").CFrame
+            game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart").CFrame = torso * CFrame.new(0, 0, 2)
+            game.Players.LocalPlayer.Character.Humanoid:EquipTool(tool)
+            tool:Activate()
+        end
+    end
+
+        game.Players.LocalPlayer.Character.Humanoid:UnequipTools()
+end
